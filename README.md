@@ -1,6 +1,18 @@
 This is my control script emulating some of the functions of the Akai APC 40 
 on an Akai MPD 26. 
 
+You must copy this entire folder into Live's Midi Remote script folders which are located : 
+
+Windows Vista, Windows 7, Windows 8, Windows 10
+\ProgramData\Ableton\Live x.x\Resources\MIDI Remote Scripts\
+
+Mac 
+/Contents/App-Resources/MIDI Remote Scripts/
+
+Then you just need to select 'MPD_CZ' as a control surface in Live and you should be good to go! 
+If you have an MPD 26 the script should work automatically, you will just need to configure it 
+as I've laid out below.
+
 The hope is that with a fairly basic understanding of python and how control 
 scripts in Live work that anyone will be able to adapt or expand upon this script
 to bring these functions to any midi controller.
