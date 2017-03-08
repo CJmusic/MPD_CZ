@@ -4,13 +4,13 @@
 MPD26 control script for ableton Live, written by Christopher Zaworski
 
 special credits to Alzy (Seppe?), his original script can be found at
-https://forum.ableton.com/viewtopic.php?f=4&t=157266 
-Also thank you to 
+https://forum.ableton.com/viewtopic.php?f=4&t=157266
+Also thank you to
 http://livecontrol.q3f.org/ableton-liveapi/articles/introduction-to-the-framework-classes/
 and especially http://remotescripts.blogspot.ca/
 
 Also credits to Julien Bayle for providing much of Ableton's API in an awesome
-resource available at: 
+resource available at:
 http://julienbayle.net/AbletonLiveRemoteScripts_Docs/_Framework/
 
 
@@ -31,6 +31,7 @@ from _Framework.SessionComponent import SessionComponent
 from _Framework.TransportComponent import TransportComponent
 from _Framework.DeviceComponent import DeviceComponent
 from _Framework.EncoderElement import EncoderElement
+from _Framework.SessionZoomingComponent import SessionZoomingComponent
 
 from _Framework.ChannelStripComponent import ChannelStripComponent
 from _APC.DetailViewCntrlComponent import DetailViewCntrlComponent
@@ -74,8 +75,12 @@ class MPD_CZ(ControlSurface):
             left_button = ButtonElement(True, MIDI_NOTE_TYPE, CHANNEL, LEFT_BUTTON)
             right_button = ButtonElement(True, MIDI_NOTE_TYPE, CHANNEL, RIGHT_BUTTON)
 
-            session.set_scene_bank_buttons(down_button, up_button)
-            session.set_track_bank_buttons(right_button, left_button)
+            # session.set_scene_bank_buttons(down_button, up_button) #enabling these and disabling the below zoom buttons will move one scene/track per button press
+            # session.set_track_bank_buttons(right_button, left_button) #
+
+            session_zoom = SessionZoomingComponent(session)
+            session_zoom.set_nav_buttons(up_button,down_button,left_button,right_button) #these make it so you move the maximum number of scenes/tracks per button press. much more useful than moving by single scenes/tracks
+
             session_stop_buttons = []
             for row in range(GRIDSIZE[0]):
                 button_row = []
